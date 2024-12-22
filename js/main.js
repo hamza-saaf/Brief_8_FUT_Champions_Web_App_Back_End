@@ -1,3 +1,11 @@
+// dark Mode
+const toggleTheme = document.getElementById('toggleTheme');
+        const html = document.querySelector('html');
+
+        toggleTheme.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
 // open_Modal
 const openModalBtn = document.getElementById("openModal");
 const closeModalBtns = [

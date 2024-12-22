@@ -4,86 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashbord</title>
-    <link rel="stylesheet" href="/styles/style.css">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styes/style.css">
+    <style>
+        .dark .dark\:bg-violet-300 {
+    background-color: #5a4db8;
+}
+.dark .dark\:bg-violet-200 {
+    background-color: #7d6fce;
+}
+    </style>
 </head>
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-    }
 
-    .Fut_logo {
-        background-color: blueviolet;
-        
-        
-    }
-</style>
-
-<body>
-    <section >
-        <div class="Fut_logo h-10">
-            <h4>FUT Champions</h4>
-        </div>
-        <div class="flex h-full">
-            <div class="w-[150px] bg-violet-300">
-                <h4 class="">Dashboard</h4>
-                <ul>
-                    <li><a href="">Admin</a></li>
-                    <li><a href="">User</a></li>
-                </ul>
+<body class="bg-violet-100 dark:bg-gray-900 dark:text-white">
+    <header class="flex items-center justify-between bg-blueviolet text-white px-6 py-4">
+        <div class="flex items-center space-x-3">
+            <div class="rounded-full  p-2">
+                <img src="images/logo_fut.png" alt="Logo" class="w-12 h-12">
             </div>
-            <div class="bg-violet-100 w-full  h-full">
-                <?php
-                include 'config.php';
-                $sql = "SELECT * FROM footballplayers INNER JOIN players ON footballplayers.id_fp = players.id_f_player ;";
-                $result = mysqli_query($connect_database, $sql);
+            <h4 class="text-lg font-bold">FUT Champions</h4>
+        </div>
+        <button id="toggleTheme" class="text-sm px-4 py-2 bg-gray-200 dark:bg-gray-800 dark:text-gray-200 rounded"><i class="fa-solid fa-circle-half-stroke"></i></button>
+        <?php include 'Crud.php/add.php' ?>
+    </header>
 
-                ?>
-                <table class="table-auto border-collapse border border-gray-300 text-left text-sm text-gray-700 mx-5">
-                    <thead class="bg-violet-200 text-gray-800 uppercase text-xs font-semibold">
-                        <tr>
-                            <th class="border border-gray-300 text-center px-4 py-4">ID</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Name</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Photo</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Position</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Rating</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Shooting</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Passing</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Dribbling</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Physical</th>
-                            <th class="border border-gray-300 text-center px-4 py-4">Actions</th>
-                        </tr>
-                    </thead>
+    <section class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-[150px] bg-violet-300 dark:bg-violet-700 p-4 text-sm">
+            <h4 class="mb-4 font-semibold">Dashboard</h4>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:text-gray-700 dark:hover:text-gray-300">Admin</a></li>
+                <li><a href="#" class="hover:text-gray-700 dark:hover:text-gray-300">User</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 bg-violet-100 dark:bg-gray-800 p-6">
+            <?php
+            include 'config.php';
+            $sql = "SELECT * FROM footballplayers INNER JOIN players ON footballplayers.id_fp = players.id_f_player;";
+            $result = mysqli_query($connect_database, $sql);
+            ?>
+
+            <table class="table-auto border-collapse w-full text-left text-sm text-gray-700 dark:text-gray-200">
+                <thead class="bg-violet-200 dark:bg-violet-300 uppercase text-xs font-semibold">
+                    <tr>
+                        <th class="border border-gray-300 px-4 py-2 text-center">ID</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Name</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Photo</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Position</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Rating</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Shooting</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Passing</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Dribbling</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Physical</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <tbody>
-                            <tr class="hover:bg-gray-50 cursor-pointer">
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['id_fp'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['name_p'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2">
-                                    <img src="<?php echo $row['photo'] ?>" alt="Player Photo" class="w-12 h-12 rounded-full">
-                                </td>
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['position'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['rating'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['shooting'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['passing'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['dribbling'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2"><?php echo $row['physical'] ?></td>
-                                <td class="border border-gray-300 text-center px-4 py-2 text-center">
-                                    <i class="fa-solid fa-eye text-blue-500 cursor-pointer"></i>
-                                    <i class="fa-solid fa-pen-to-square text-green-500 mx-2 cursor-pointer"></i>
-                                    <i class="fa-solid fa-trash text-red-500 cursor-pointer"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <?php } ?>
-                </table>
-            </div>
-        </div>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['id_fp'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['name_p'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                <img src="<?php echo $row['photo'] ?>" alt="Player Photo" class="w-12 h-12 rounded-full mx-auto">
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['position'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['rating'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['shooting'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['passing'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['dribbling'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $row['physical'] ?></td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                <i class="fa-solid fa-eye text-blue-500 cursor-pointer"></i>
+                                <i class="fa-solid fa-pen-to-square text-green-500 mx-2 cursor-pointer"></i>
+                                <i class="fa-solid fa-trash text-red-500 cursor-pointer"></i>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </main>
     </section>
 
+    <script src="js/main.js"></script>
 </body>
 
 </html>
