@@ -3,18 +3,15 @@
 <div class="modal-content">
     <div>
         <button type="button" id="openModal"
-            class="font-bold bg-sky-300 text-black py-2 px-4 rounded hover:bg-sky-700">
+            class="font-bold bg-white text-black py-2 px-4 rounded hover:bg-violet-200">
             Add-Player
         </button>
-        <select class="font-bold bg-sky-300 text-black py-2 px-4 outline-none rounded hover:bg-sky-500" name="plan"
+        <select class="font-bold  text-black py-[9px] px-4 rounded hover:bg-violet-200" name="plan"
             id="plan1">
             <option value="">4-3-3</option>
             <option value="">4-4-2</option>
         </select>
     </div>
-
-    <div class="flex justify-start flex-wrap mt-3 gap-3" id="add_players"></div>
-
     <div id="myModal"
         class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white rounded-lg shadow-lg w-11/12 sm:w-1/2">
@@ -101,6 +98,6 @@
         </div>
     </div>
 </div>
-<script src="js/main.js"></script>
+
 
 
