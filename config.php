@@ -11,7 +11,7 @@ if(mysqli_connect_errno()){
     exit();
 }
 else{
-    echo "Is Connected";
+    echo "";
 }
 
 ?>

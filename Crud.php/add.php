@@ -3,10 +3,10 @@
 <div class="modal-content">
     <div>
         <button type="button" id="openModal"
-            class="font-bold bg-white text-black py-2 px-4 rounded hover:bg-violet-200">
+            class="font-bold  bg-violet-300 text-black py-2 px-2 rounded hover:bg-violet-200">
             Add-Player
         </button>
-        <select class="font-bold  text-black py-[9px] px-4 rounded hover:bg-violet-200" name="plan"
+        <select class="font-bold  bg-violet-300 text-black py-[9px] px-4 rounded hover:bg-violet-200" name="plan"
             id="plan1">
             <option value="">4-3-3</option>
             <option value="">4-4-2</option>
@@ -25,7 +25,7 @@
 
             <!-- Modal Body -->
             <div class="p-4 max-h-96 overflow-y-auto">
-                <form action="post" onsubmit="AlertForm(event)">
+                <form action="add_player" method="POST">
                     <fieldset class="space-y-4">
                         <legend class="font-bold text-xl">Add Player:</legend>
                         <div>
